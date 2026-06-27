@@ -5,8 +5,8 @@ for estimating the phase (eigenvalue) of a unitary operator.
 We use a simple phase gate as the unitary U.
 '''
 
-from qiskit import QuantumCircuit, execute
-from qiskit_aer import Aer
+from qiskit import QuantumCircuit
+from qiskit_aer import AerSimulator
 from qiskit.visualization import plot_histogram
 import numpy as np
 import matplotlib.pyplot as plt
@@ -56,8 +56,8 @@ def run_qpe_example():
     print()
     
     # Simulate the circuit
-    simulator = Aer.get_backend('aer_simulator')
-    job = execute(qc, simulator, shots=1024)
+    simulator = AerSimulator()
+    job = simulator.run(qc, shots=1024)
     result = job.result()
     counts = result.get_counts(qc)
     
@@ -72,6 +72,7 @@ def run_qpe_example():
     
     print(f"Most frequent outcome: {outcome} (binary)")
     print(f"Decimal value: {decimal}")
+    print(f"Estimated phase (θ/2π): {estimated_phase * (2 * np.pi):.6f} rad")
     print(f"Estimated phase (θ/2π): {estimated_phase:.6f}")
     print(f"Expected phase (θ/2π): 0.375000")
     print(f"Absolute error: {abs(estimated_phase - 0.375):.6f}")
