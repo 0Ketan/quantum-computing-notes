@@ -5,7 +5,8 @@ for estimating the phase (eigenvalue) of a unitary operator.
 We use a simple phase gate as the unitary U.
 '''
 
-from qiskit import QuantumCircuit, Aer, execute
+from qiskit import QuantumCircuit, execute
+from qiskit_aer import Aer
 from qiskit.visualization import plot_histogram
 import numpy as np
 import matplotlib.pyplot as plt
